@@ -1,0 +1,6 @@
+{
+  "platformName": "android",
+  "appium:platformVersion": "13.0",
+  "appium:deviceName": "Pixel C API 33",
+  "appium:automationName": "UiAutomator2"
+}

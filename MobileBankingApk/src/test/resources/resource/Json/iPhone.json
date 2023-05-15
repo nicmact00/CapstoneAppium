@@ -1,0 +1,7 @@
+{
+  "platformName": "ios",
+  "appium:platformVersion": "16.4",
+  "appium:deviceName": "iPhone 14 Pro",
+  "appium:automationName": "XCUITest",
+  "appium:Uuid": "0C3EFBE5-0A43-441F-AED4-1537EE9B84D3"
+}
