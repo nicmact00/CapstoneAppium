@@ -4,13 +4,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.Assert;
@@ -27,8 +32,8 @@ import io.appium.java_client.ios.options.XCUITestOptions;
 
 public class IOSTabletLaunch {
 	
-	static IOSDriver driver;
-	static ExtentTest test;
+	public static IOSDriver driver;
+	public static ExtentTest test;
 
 	static ConfigFileReader cfg = new ConfigFileReader();
 	static String iphoneAppPath = cfg.getSpecificUrlProperties("iphoneAppPath");
@@ -36,6 +41,20 @@ public class IOSTabletLaunch {
 	static String jsoniPhone = cfg.getSpecificUrlProperties("IOSTabletJson");
 	static String driverUrl = cfg.getSpecificUrlProperties("driverUrl");
 	static JsonFileReader jfr = new JsonFileReader();
+	
+	public static void generateScreenShots(String info, String status) throws IOException {
+        String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File source = ts.getScreenshotAs(OutputType.FILE);
+        String destination = System.getProperty("user.dir") + "/IOSTestScreenshots/" + "ScreenShots" + dateName + ".png";
+        if(status == "PASS") {
+            test.log(LogStatus.PASS, info + test.addScreenCapture(destination));
+        }else {
+            test.log(LogStatus.FAIL, info + test.addScreenCapture(destination));
+        }
+        File finalDestination = new File(destination);
+        FileUtils.copyFile(source, finalDestination);
+    }
 
 	public static void configureApp() throws FileNotFoundException, IOException, ParseException {
 
@@ -56,12 +75,12 @@ public class IOSTabletLaunch {
 
 		driver = new IOSDriver(new URL(driverUrl), cap);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		test.log(LogStatus.INFO, "UIKitCatalog application launched successfully.");
 	}
 
-	public static void clickActivityIndicator() {
+	public static void clickActivityIndicator() throws IOException {
 		driver.findElement(AppiumBy.accessibilityId("Activity Indicators")).click();
-		driver.navigate().back();
-
+		generateScreenShots("Activity Indicators Page found", "PASS");
 	}
 
 	public static void clickPickerView() {
@@ -72,13 +91,13 @@ public class IOSTabletLaunch {
 			driver.findElement(AppiumBy.accessibilityId("Green color component value")).sendKeys("0");
 			driver.findElement(AppiumBy.accessibilityId("Blue color component value")).sendKeys("225");
 			Assert.assertTrue(true);
-			test.log(LogStatus.PASS, "Color blue success", "success");
+			
+			generateScreenShots("Color blue success", "PASS");
 		} catch (Exception e) {
 			e.printStackTrace();
 			test.log(LogStatus.FAIL, "Color blue failed", "failed");
 			Assert.assertTrue(false);
 		}
-		driver.navigate().back();
 
 	}
 
@@ -86,7 +105,7 @@ public class IOSTabletLaunch {
 		{
 			try {
 				driver.findElement(AppiumBy.accessibilityId("Date Picker")).click();
-				driver.navigate().back();
+				generateScreenShots("Date Picker Page Found", "PASS");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -112,11 +131,10 @@ public class IOSTabletLaunch {
 				}
 
 				if (blueImage.equals(blueImage)) {
-					test.log(LogStatus.PASS, "Color changes", "success");
+					generateScreenShots("Color changes", "PASS");
 				} else {
 					test.log(LogStatus.FAIL, "Color changes", "failed");
 				}
-				driver.navigate().back();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -136,12 +154,11 @@ public class IOSTabletLaunch {
 				}
 
 				if (getImage.isDisplayed()) {
-					test.log(LogStatus.PASS, "Images are present", "success");
+					generateScreenShots("Images are present", "PASS");
 				} else {
 					test.log(LogStatus.FAIL, "Images are not present", "failed");
 				}
 
-				driver.navigate().back();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -153,14 +170,14 @@ public class IOSTabletLaunch {
 		{
 			try {
 				driver.findElement(AppiumBy.accessibilityId("Search")).click();
-				driver.findElement(By.xpath("//XCUIElementTypeButton[@index='6']")).click();
+				driver.findElement(AppiumBy.accessibilityId("Default")).click();
 				driver.findElement(AppiumBy.accessibilityId("Scope Two")).click();
-				driver.findElement(AppiumBy.accessibilityId("Search")).click();
-				driver.findElement(By.xpath("//XCUIElementTypeButton[@index='5']")).click();
-				WebElement searchSample = driver.findElement(By.xpath("//XCUIElementTypeSearchField[@index='0']"));
+				driver.findElement(AppiumBy.accessibilityId("Custom")).click();
+				WebElement searchSample = driver.findElement(By.xpath("//XCUIElementTypeSearchField"));
 				searchSample.sendKeys("Sample");
+				
+				generateScreenShots("Search Page found and input details", "PASS");
 
-				driver.navigate().back();
 				driver.navigate().back();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -181,12 +198,12 @@ public class IOSTabletLaunch {
 				Assert.assertEquals(currentProgressIndicator, "100%");
 
 				if (currentProgressIndicator.equals("100%")) {
-					test.log(LogStatus.PASS, "Total Bar Progress is 100%", "success");
+					generateScreenShots("Total Bar Progress is 100%", "PASS");
 				} else {
 					test.log(LogStatus.FAIL, "Total Bar Progress is not 100%", "failed");
 				}
+				
 
-				driver.navigate().back();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -200,8 +217,7 @@ public class IOSTabletLaunch {
 				driver.findElement(By.xpath("(//XCUIElementTypeButton[@name='Tools'])")).click();
 				driver.findElement(By.xpath("(//XCUIElementTypeButton[@name='Check'])[2]")).click();
 				driver.findElement(By.xpath("(//XCUIElementTypeButton[@name='Gift'])")).click();
-
-				driver.navigate().back();
+				generateScreenShots("Segmented Controls Page Found and clicked details", "PASS");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -214,7 +230,7 @@ public class IOSTabletLaunch {
 			try {
 				driver.findElement(AppiumBy.accessibilityId("Switches")).click();
 				driver.findElement(By.xpath("(//XCUIElementTypeSwitch[@index='4'])")).click();
-				driver.navigate().back();
+				generateScreenShots("Switches Page Found and clicked", "PASS");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -244,8 +260,7 @@ public class IOSTabletLaunch {
 				driver.findElement(
 						AppiumBy.iOSClassChain("**/XCUIElementTypeTextField[`value == \"Placeholder text\"`][1]"))
 						.sendKeys("Sample 5");
-
-				driver.navigate().back();
+				generateScreenShots("Text Fields Page Found and inputs sample text", "PASS");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -258,19 +273,16 @@ public class IOSTabletLaunch {
 			try {
 				driver.findElement(AppiumBy.accessibilityId("Toolbars")).click();
 
-				WebElement customBtn = driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name='Custom']"));
-				customBtn.click();
+				driver.findElement(AppiumBy.accessibilityId("Custom")).click();
 
+				driver.findElement(AppiumBy.accessibilityId("Default")).click();
+
+				driver.findElement(AppiumBy.accessibilityId("Delete")).click();
+				
+				generateScreenShots("Tool Bars Page Found and custom, default, delete clicked.", "PASS");
+				
 				driver.navigate().back();
 
-				WebElement defaultBtn = driver.findElement(By.xpath("//XCUIElementTypeStaticText[@name='Default']"));
-				defaultBtn.click();
-
-				WebElement deleteBtn = driver.findElement(By.xpath("//XCUIElementTypeButton[@name='Delete']"));
-				deleteBtn.click();
-
-				driver.navigate().back();
-				driver.navigate().back();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -297,12 +309,11 @@ public class IOSTabletLaunch {
 				}
 
 				if (validateHTML.isDisplayed()) {
-					test.log(LogStatus.PASS, "HTML is displayed", "success");
+					generateScreenShots("HTML is displayed", "PASS");
 				} else {
 					test.log(LogStatus.FAIL, "HTML is not displayed", "failed");
 				}
 
-				driver.navigate().back();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -320,13 +331,15 @@ public class IOSTabletLaunch {
 				WebElement validatSafeeChoice = driver.findElement(AppiumBy.accessibilityId("Safe Choice"));
 
 				if (validatDestructiveChoice.isDisplayed() && validatSafeeChoice.isDisplayed()) {
+					generateScreenShots("Alert Views Page Found and Destructive Choice button clicked", "PASS");
 					Assert.assertTrue(true);
 				} else {
 					Assert.assertTrue(false);
 				}
-
+				
 				validatDestructiveChoice.click();
-				driver.navigate().back();
+				
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -349,7 +362,7 @@ public class IOSTabletLaunch {
 				}
 
 				if (furtherDetails.isDisplayed()) {
-					test.log(LogStatus.PASS, "Further details is displayed", "success");
+					generateScreenShots("Further details is displayed", "PASS");
 				} else {
 					test.log(LogStatus.FAIL, "Further details is not displayed", "failed");
 				}
@@ -364,12 +377,12 @@ public class IOSTabletLaunch {
 				}
 
 				if (validateColor.isDisplayed()) {
-					test.log(LogStatus.PASS, "A red box is diplayed", "success");
+					generateScreenShots("A color box is diplayed", "PASS");
 				} else {
-					test.log(LogStatus.FAIL, "A red box is not displayed", "failed");
+					test.log(LogStatus.FAIL, "A color box is not displayed", "failed");
 				}
 
-				driver.navigate().back();
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -391,8 +404,9 @@ public class IOSTabletLaunch {
 
 				WebElement customSlider = driver.findElement(By.xpath("//XCUIElementTypeSlider[@value='84%']"));
 				customSlider.sendKeys("0.5");
+				
+				generateScreenShots("Sliders Page Found and sliders been changed", "PASS");
 
-				driver.navigate().back();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -409,14 +423,13 @@ public class IOSTabletLaunch {
 				params.put("direction", "down");
 				driver.executeScript("mobile:scroll", params);
 				driver.findElement(AppiumBy.accessibilityId("Web View")).click();
-				driver.navigate().back();
 
 				List<WebElement> uiKitOptions = driver
-						.findElements(By.xpath("//XCUIElementTypeButton[@name='chevron']"));
+						.findElements(By.xpath("//XCUIElementTypeCell"));
 				System.out.println("Total UIKitCatalog options: " + uiKitOptions.size());
 
 				if (uiKitOptions.size() == 18) {
-					test.log(LogStatus.PASS, "Total UIKitCatalog options correst", "success");
+					generateScreenShots("Total UIKitCatalog options: " + uiKitOptions.size(), "PASS");
 				} else {
 					test.log(LogStatus.FAIL, "Total UIKitCatalog options incorrect", "failed");
 				}

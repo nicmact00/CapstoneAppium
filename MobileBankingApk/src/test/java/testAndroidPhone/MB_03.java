@@ -1,13 +1,19 @@
 package testAndroidPhone;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
@@ -29,6 +35,20 @@ public class MB_03 extends AndroidPhoneLaunch {
 	ConfigFileReader cfg = new ConfigFileReader();
 	String urlPath = cfg.getSpecificUrlProperties("driverUrl");
 	
+	public void generateScreenShots(String info, String status) throws IOException {
+        String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File source = ts.getScreenshotAs(OutputType.FILE);
+        String destination = System.getProperty("user.dir") + "/AndroidTestScreenshots/" + "ScreenShots" + dateName + ".png";
+        if(status == "PASS") {
+            test.log(LogStatus.PASS, info + test.addScreenCapture(destination));
+        }else {
+            test.log(LogStatus.FAIL, info + test.addScreenCapture(destination));
+        }
+        File finalDestination = new File(destination);
+        FileUtils.copyFile(source, finalDestination);
+    }
+	
 	@BeforeSuite
 	public void beforeclass() {
 		test = ExtentReport.generateExtentReport("Android Phone - MB_03");
@@ -42,6 +62,7 @@ public class MB_03 extends AndroidPhoneLaunch {
 	@Test(priority = 1)
 	public void inputUsernameAndPassword() throws MalformedURLException, IOException {
 		ExcelAccount.excelUsernamePassword();
+		test.log(LogStatus.PASS, "Login Successfully!");
 	}
 
 	@Test(priority = 2)
@@ -51,12 +72,12 @@ public class MB_03 extends AndroidPhoneLaunch {
 		driver = new AndroidDriver(new URL(urlPath), cap);
 
 		driver.findElement(By.id("com.androiddevelopment.mobile_banking:id/transferButton")).click();
-
+		test.log(LogStatus.INFO, "Transfer Button Click Successfully!");
 	}
 
 	@SuppressWarnings("deprecation")
 	@Test(priority = 3, enabled = false)
-	public void checkingToSavings() throws MalformedURLException {
+	public void checkingToSavings() throws IOException {
 		
 		UiAutomator2Options cap = new UiAutomator2Options();
 		driver = new AndroidDriver(new URL(urlPath), cap);
@@ -80,7 +101,7 @@ public class MB_03 extends AndroidPhoneLaunch {
 		}
 		
 		if (validateCheckingToSavings.isDisplayed()) {
-			test.log(LogStatus.PASS, "Checking to Savings", "success");
+			generateScreenShots("Checking to Savings is displayed", "PASS");
 		} else {
 			test.log(LogStatus.FAIL, "Checking to Savings", "failed");
 		}
@@ -89,7 +110,7 @@ public class MB_03 extends AndroidPhoneLaunch {
 
 	@SuppressWarnings("deprecation")
 	@Test(priority = 3, enabled = true)
-	public void savingsToChecking() throws MalformedURLException {
+	public void savingsToChecking() throws IOException {
 		UiAutomator2Options cap = new UiAutomator2Options();
 		driver = new AndroidDriver(new URL(urlPath), cap);
 
@@ -112,7 +133,7 @@ public class MB_03 extends AndroidPhoneLaunch {
 		}
 		
 		if (validateSavingsToCheking.isDisplayed()) {
-			test.log(LogStatus.PASS, "Savings to Checking", "success");
+			generateScreenShots("Savings to Checking is displayed", "PASS");
 		} else {
 			test.log(LogStatus.FAIL, "Savings to Checking", "failed");
 		}

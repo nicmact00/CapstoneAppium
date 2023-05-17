@@ -10,15 +10,16 @@ import org.json.simple.parser.ParseException;
 import org.openqa.selenium.SessionNotCreatedException;
 
 import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 
 import Utils.ConfigFileReader;
 import Utils.JsonFileReader;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 
-public class AndroidTabletLaunch {
-	static AndroidDriver ad;
-	public ExtentTest test;
+public class AndroidTabletLaunch extends JsonFileReader{
+	public static AndroidDriver driver;
+	public static ExtentTest test;
 
 	static ConfigFileReader cfg = new ConfigFileReader();
 	static String jsonPhone = cfg.getSpecificUrlProperties("androidTabletJson");
@@ -44,9 +45,10 @@ public class AndroidTabletLaunch {
 		cap.setPlatformName(platformName);
 
 		try {
-			ad = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
-			ad.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-			System.out.println("Mobile Banking application launched successfully.");
+			driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+			test.log(LogStatus.INFO, "Mobile Banking application launched successfully.");
+			
 		} catch (SessionNotCreatedException e) {
 			System.out.println("Session could not be created. Please check the capabilities and device settings.");
 		} catch (Exception e) {

@@ -8,13 +8,10 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import com.relevantcodes.extentreports.ExtentTest;
-
 import Utils.ExtentReport;
 import iPhone.IOSTabletLaunch;
 
-public class IOSTabletTestUI {
-	ExtentTest test;
+public class IOSTabletTestUI extends IOSTabletLaunch{
 
 	@BeforeSuite
 	public void beforeclass() {

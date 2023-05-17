@@ -1,104 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="5" passed="3" failed="1" skipped="0">
+<testng-results ignored="0" total="16" passed="16" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-05-15T16:37:29 PST" name="Default suite" finished-at="2023-05-15T16:37:57 PST" duration-ms="27811">
+  <suite started-at="2023-05-16T16:58:35 PST" name="Default suite" finished-at="2023-05-16T16:59:37 PST" duration-ms="61430">
     <groups>
     </groups>
-    <test started-at="2023-05-15T16:37:29 PST" name="Default test" finished-at="2023-05-15T16:37:57 PST" duration-ms="27811">
-      <class name="testAndroidTablet.MB_03T">
-        <test-method is-config="true" signature="beforeclass()[pri:0, instance:testAndroidTablet.MB_03T@795509d9]" started-at="2023-05-15T16:37:24 PST" name="beforeclass" finished-at="2023-05-15T16:37:29 PST" duration-ms="5097" status="PASS">
+    <test started-at="2023-05-16T16:58:35 PST" name="Default test" finished-at="2023-05-16T16:59:37 PST" duration-ms="61430">
+      <class name="testiPhoneAndTablet.IOSTabletTestUI">
+        <test-method is-config="true" signature="beforeclass()[pri:0, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:58:30 PST" name="beforeclass" finished-at="2023-05-16T16:58:35 PST" duration-ms="5115" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeclass -->
-        <test-method signature="MobileBankingLauch()[pri:0, instance:testAndroidTablet.MB_03T@795509d9]" started-at="2023-05-15T16:37:29 PST" name="MobileBankingLauch" finished-at="2023-05-15T16:37:35 PST" duration-ms="6570" status="PASS">
+        <test-method signature="UI_1()[pri:1, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:58:35 PST" name="UI_1" finished-at="2023-05-16T16:58:42 PST" duration-ms="7208" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- MobileBankingLauch -->
-        <test-method signature="inputUsernameAndPassword()[pri:1, instance:testAndroidTablet.MB_03T@795509d9]" started-at="2023-05-15T16:37:35 PST" name="inputUsernameAndPassword" finished-at="2023-05-15T16:37:42 PST" duration-ms="6311" status="PASS">
+        </test-method> <!-- UI_1 -->
+        <test-method signature="UI_2()[pri:2, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:58:42 PST" name="UI_2" finished-at="2023-05-16T16:58:43 PST" duration-ms="713" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- inputUsernameAndPassword -->
-        <test-method signature="transferAccount()[pri:2, instance:testAndroidTablet.MB_03T@795509d9]" started-at="2023-05-15T16:37:42 PST" name="transferAccount" finished-at="2023-05-15T16:37:47 PST" duration-ms="5033" status="PASS">
+        </test-method> <!-- UI_2 -->
+        <test-method signature="UI_3()[pri:3, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:58:43 PST" name="UI_3" finished-at="2023-05-16T16:58:44 PST" duration-ms="702" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- transferAccount -->
-        <test-method signature="checkingToSavings()[pri:3, instance:testAndroidTablet.MB_03T@795509d9]" started-at="2023-05-15T16:37:47 PST" name="checkingToSavings" finished-at="2023-05-15T16:37:57 PST" duration-ms="9867" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[An element could not be located on the page using the given search parameters.
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.9.1', revision: 'eb2032df7f'
-System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '13.3.1', java.version: '17.0.5'
-Driver info: io.appium.java_client.android.AndroidDriver
-Command: [52f5a4b6-ff7f-46e8-96a6-79d2814cab95, findElement {using=id, value=com.androiddevelopment.mobile_banking:id/TransferSpinner}]
-Capabilities {appium:automationName: UIAutomator2, appium:databaseEnabled: false, appium:desired: {automationName: UIAutomator2, platformName: ANDROID}, appium:deviceApiLevel: 33, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_arm64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 320, appium:deviceScreenSize: 1800x2560, appium:deviceUDID: emulator-5554, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:pixelRatio: 2, appium:platformVersion: 13, appium:statBarHeight: 48, appium:takesScreenshot: true, appium:viewportRect: {height: 2512, left: 0, top: 48, width: 1800}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 52f5a4b6-ff7f-46e8-96a6-79d2814cab95]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters.
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.9.1', revision: 'eb2032df7f'
-System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '13.3.1', java.version: '17.0.5'
-Driver info: io.appium.java_client.android.AndroidDriver
-Command: [52f5a4b6-ff7f-46e8-96a6-79d2814cab95, findElement {using=id, value=com.androiddevelopment.mobile_banking:id/TransferSpinner}]
-Capabilities {appium:automationName: UIAutomator2, appium:databaseEnabled: false, appium:desired: {automationName: UIAutomator2, platformName: ANDROID}, appium:deviceApiLevel: 33, appium:deviceManufacturer: Google, appium:deviceModel: sdk_gphone64_arm64, appium:deviceName: emulator-5554, appium:deviceScreenDensity: 320, appium:deviceScreenSize: 1800x2560, appium:deviceUDID: emulator-5554, appium:javascriptEnabled: true, appium:locationContextEnabled: false, appium:networkConnectionEnabled: true, appium:pixelRatio: 2, appium:platformVersion: 13, appium:statBarHeight: 48, appium:takesScreenshot: true, appium:viewportRect: {height: 2512, left: 0, top: 48, width: 1800}, appium:warnings: {}, appium:webStorageEnabled: false, platformName: ANDROID}
-Session ID: 52f5a4b6-ff7f-46e8-96a6-79d2814cab95
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
-at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:262)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-at testAndroidTablet.MB_03T.checkingToSavings(MB_03T.java:70)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-at org.testng.TestRunner.privateRun(TestRunner.java:829)
-at org.testng.TestRunner.run(TestRunner.java:602)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
-at org.testng.SuiteRunner.run(SuiteRunner.java:330)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
-at org.testng.TestNG.runSuites(TestNG.java:1099)
-at org.testng.TestNG.run(TestNG.java:1067)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+        </test-method> <!-- UI_3 -->
+        <test-method signature="UI_4()[pri:4, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:58:44 PST" name="UI_4" finished-at="2023-05-16T16:58:45 PST" duration-ms="1098" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- checkingToSavings -->
-        <test-method is-config="true" signature="afterclass()[pri:0, instance:testAndroidTablet.MB_03T@795509d9]" started-at="2023-05-15T16:38:02 PST" name="afterclass" finished-at="2023-05-15T16:38:02 PST" duration-ms="90" status="PASS">
+        </test-method> <!-- UI_4 -->
+        <test-method signature="UI_5()[pri:5, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:58:45 PST" name="UI_5" finished-at="2023-05-16T16:58:47 PST" duration-ms="2262" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_5 -->
+        <test-method signature="UI_6()[pri:6, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:58:47 PST" name="UI_6" finished-at="2023-05-16T16:58:49 PST" duration-ms="2012" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_6 -->
+        <test-method signature="UI_7()[pri:7, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:58:49 PST" name="UI_7" finished-at="2023-05-16T16:59:01 PST" duration-ms="11469" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_7 -->
+        <test-method signature="UI_8()[pri:8, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:59:01 PST" name="UI_8" finished-at="2023-05-16T16:59:05 PST" duration-ms="4576" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_8 -->
+        <test-method signature="UI_9()[pri:9, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:59:05 PST" name="UI_9" finished-at="2023-05-16T16:59:10 PST" duration-ms="4989" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_9 -->
+        <test-method signature="UI_010()[pri:10, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:59:10 PST" name="UI_010" finished-at="2023-05-16T16:59:15 PST" duration-ms="4523" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_010 -->
+        <test-method signature="UI_011()[pri:11, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:59:15 PST" name="UI_011" finished-at="2023-05-16T16:59:18 PST" duration-ms="3655" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_011 -->
+        <test-method signature="UI_012()[pri:12, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:59:18 PST" name="UI_012" finished-at="2023-05-16T16:59:20 PST" duration-ms="1387" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_012 -->
+        <test-method signature="UI_013()[pri:13, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:59:20 PST" name="UI_013" finished-at="2023-05-16T16:59:28 PST" duration-ms="7855" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_013 -->
+        <test-method signature="UI_014()[pri:14, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:59:28 PST" name="UI_014" finished-at="2023-05-16T16:59:32 PST" duration-ms="3970" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_014 -->
+        <test-method signature="UI_015()[pri:15, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:59:32 PST" name="UI_015" finished-at="2023-05-16T16:59:34 PST" duration-ms="2121" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_015 -->
+        <test-method signature="UI_020()[pri:16, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:59:34 PST" name="UI_020" finished-at="2023-05-16T16:59:37 PST" duration-ms="2849" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- UI_020 -->
+        <test-method is-config="true" signature="afterclass()[pri:0, instance:testiPhoneAndTablet.IOSTabletTestUI@3f191845]" started-at="2023-05-16T16:59:42 PST" name="afterclass" finished-at="2023-05-16T16:59:42 PST" duration-ms="87" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterclass -->
-      </class> <!-- testAndroidTablet.MB_03T -->
+      </class> <!-- testiPhoneAndTablet.IOSTabletTestUI -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -9,10 +9,13 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 
+import com.relevantcodes.extentreports.LogStatus;
+
+import Android.AndroidPhoneLaunch;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 
-public class ExcelAccount {
+public class ExcelAccount extends AndroidPhoneLaunch {
 
 	static AndroidDriver driver;
 
@@ -41,5 +44,7 @@ public class ExcelAccount {
 		driver.findElement(By.id("com.androiddevelopment.mobile_banking:id/passwordEditText"))
 				.sendKeys(Integer.toString(passwordExcel));
 		driver.findElement(By.id("com.androiddevelopment.mobile_banking:id/loginButton")).click();
+		
+		
 	}
 }

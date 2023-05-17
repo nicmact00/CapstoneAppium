@@ -3,13 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testAndroidTablet.MB_03T">
+      <class name="testiPhoneAndTablet.iPhoneTestUI">
         <methods>
           <include name="afterclass"/>
           <include name="beforeclass"/>
-          <include name="checkingToSavings"/>
+          <include name="UI_2"/>
+          <include name="UI_6"/>
+          <include name="UI_1"/>
         </methods>
-      </class> <!-- testAndroidTablet.MB_03T -->
+      </class> <!-- testiPhoneAndTablet.iPhoneTestUI -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

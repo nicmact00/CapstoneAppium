@@ -1,12 +1,18 @@
 package testAndroidTablet;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import org.apache.commons.io.FileUtils;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
@@ -28,6 +34,20 @@ public class MB_02T extends AndroidTabletLaunch {
 	ConfigFileReader cfg = new ConfigFileReader();
 
 	String urlPath = cfg.getSpecificUrlProperties("driverUrl");
+	
+	public void generateScreenShots(String info, String status) throws IOException {
+        String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File source = ts.getScreenshotAs(OutputType.FILE);
+        String destination = System.getProperty("user.dir") + "/AndroidTestScreenshots/" + "ScreenShots" + dateName + ".png";
+        if(status == "PASS") {
+            test.log(LogStatus.PASS, info + test.addScreenCapture(destination));
+        }else {
+            test.log(LogStatus.FAIL, info + test.addScreenCapture(destination));
+        }
+        File finalDestination = new File(destination);
+        FileUtils.copyFile(source, finalDestination);
+    }
 
 	@BeforeSuite
 	public void beforeclass() {
@@ -42,6 +62,7 @@ public class MB_02T extends AndroidTabletLaunch {
 	@Test(priority = 1)
 	public void inputUsernameAndPassword() throws MalformedURLException, IOException {
 		ExcelAccount.excelUsernamePassword();
+		test.log(LogStatus.PASS, "Login Successfully!");
 	}
 
 	@Test(priority = 2)
@@ -55,7 +76,7 @@ public class MB_02T extends AndroidTabletLaunch {
 	}
 
 	@Test(priority = 3)
-	public void depositAccount() throws MalformedURLException {
+	public void depositAccount() throws IOException {
 		UiAutomator2Options cap = new UiAutomator2Options();
 		driver = new AndroidDriver(new URL(urlPath), cap);
 
@@ -70,7 +91,8 @@ public class MB_02T extends AndroidTabletLaunch {
 			Assert.assertTrue(false);
 		}
 		if (validateDeposit.isDisplayed()) {
-			test.log(LogStatus.PASS, "Deposit Amount Succeed, Account Balance Updated", "success");
+			generateScreenShots("Deposit Amount found and Current Balance changed", "PASS");
+			//test.log(LogStatus.PASS, "Deposit Amount Succeed, Account Balance Updated", "success");
 		} else {
 			test.log(LogStatus.FAIL, "Deposit Amount Failed", "failed");
 		}

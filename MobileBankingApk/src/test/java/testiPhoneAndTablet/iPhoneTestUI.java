@@ -8,8 +8,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import com.relevantcodes.extentreports.ExtentTest;
-
 import Utils.ExtentReport;
 import iPhone.iPhoneLaunch;
 
